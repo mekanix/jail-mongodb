@@ -1,0 +1,13 @@
+---
+- name: install mongodb packages
+  with_items: "{{ mongodb_packages }}"
+  pkgng:
+    name: "{{ item.name }}"
+    state: present
+  notify:
+    - restart mongodb
+
+- name: enable mongodb
+  template:
+    src: mongod.j2
+    dest: /etc/rc.conf.d/mongod
