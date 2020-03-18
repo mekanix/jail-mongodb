@@ -11,3 +11,10 @@
   template:
     src: mongod.j2
     dest: /etc/rc.conf.d/mongod
+
+- name: configure mongodb
+  template:
+    src: mongodb.conf.j2
+    dest: /usr/local/etc/mongodb.conf
+  notify:
+    - restart mongodb
